@@ -1,0 +1,26 @@
+# Profil Wireshark "UDP-Geo"
+# Kolom Source/Destination + City/Country dari ekstensi geo_udp.lua.
+# Pilih profil ini lewat menu profil di kanan bawah Wireshark.
+
+####### User Interface: Columns ########
+
+gui.column.format:
+	"No.", "%m",
+	"Time", "%t",
+	"Source", "%s",
+	"SPort", "%S",
+	"Destination", "%d",
+	"DPort", "%D",
+	"City", "%Cus:udpgeo.src_city:0",
+	"Country", "%Cus:udpgeo.src_country:0",
+	"Protocol", "%p",
+	"Length", "%L",
+	"Info", "%i"
+
+####### Name Resolution ########
+
+# Tampilkan IP numerik, bukan nama host.
+nameres.network_name: FALSE
+nameres.mac_name: FALSE
+# Ambil city/country dari MaxMind GeoLite2.
+nameres.maxmind_geoip: TRUE

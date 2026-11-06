@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pcap
+*.pcapng
+*.mmdb
+*.log
+.geo_sniffer.stop
+geo_sniffer.log
+.venv/
+venv/
+.DS_Store

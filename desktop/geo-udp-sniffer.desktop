@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=UDP Geo Sniffer
+Comment=Overlay kota dan negara paket UDP (GeoLite2)
+Exec=python3 geo_udp_sniffer.py
+Icon=network-wireless
+Terminal=false
+Categories=Network;Monitor;
+StartupNotify=false
