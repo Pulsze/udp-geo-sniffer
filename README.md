@@ -13,6 +13,12 @@ Output contoh:
 #2 [UDP] 110.136.0.1:3478 | City: Jakarta | Country: Indonesia (ID)
 ```
 
+> **Penting — database GeoIP wajib ada.** File `GeoLite2-City.mmdb` **tidak
+> disertakan** di repo ini karena lisensi MaxMind. Tanpa file tersebut,
+> city/country tidak akan tampil. Unduh gratis di
+> **<https://www.maxmind.com/en/geolite2/signup>** (perlu akun MaxMind),
+> atau biarkan Wireshark mengunduhnya otomatis saat pertama kali dipakai.
+
 ## Fitur
 
 - Overlay GTK3 selalu di atas, diposisikan di kanan atas layar.
@@ -142,23 +148,42 @@ udpgeo.src_location contains "Medan"
 udpgeo.src_country_iso == "ID"
 ```
 
-## Database GeoLite2
+## Database GeoLite2 (wajib)
 
 Repo ini **tidak menyertakan** `GeoLite2-City.mmdb` karena lisensinya milik
-MaxMind dan tidak boleh didistribusikan ulang di repo publik.
+MaxMind dan tidak boleh didistribusikan ulang di repo publik. Database ini
+**wajib** agar city/country bisa ditampilkan.
 
-Cara mendapatkannya:
+Link download resmi MaxMind:
 
-- Buka Wireshark sekali dan aktifkan
-  **Edit → Preferences → Name Resolution → Enable MaxMind geolocation**.
-  Wireshark akan mengunduh database ke
-  `~/.local/share/wireshark/maxmind/`.
-- Atau unduh dari <https://www.maxmind.com/en/geolite2/signup> (perlu akun
-  MaxMind), lalu letakkan di salah satu lokasi yang dicari aplikasi:
-  - `~/.local/share/wireshark/maxmind/GeoLite2-City.mmdb`
-  - `~/.local/share/GeoIP/GeoLite2-City.mmdb`
-  - `/usr/share/GeoIP/GeoLite2-City.mmdb`
-  - `/usr/share/wireshark/maxmind/GeoLite2-City.mmdb`
+- Daftar akun gratis: **<https://www.maxmind.com/en/geolite2/signup>**
+- Halaman download (setelah login):
+  **<https://www.maxmind.com/en/accounts/current/geoip/downloads>**
+- Info lisensi & data GeoLite2:
+  **<https://dev.maxmind.com/geoip/geolite2-free-geolocation-data>**
+
+Pilih **GeoLite2 City → Download GZIP (.tar.gz)**, lalu ekstrak dan salin:
+
+```bash
+tar -xzf GeoLite2-City_*.tar.gz
+mkdir -p ~/.local/share/wireshark/maxmind
+cp GeoLite2-City_*/GeoLite2-City.mmdb ~/.local/share/wireshark/maxmind/
+```
+
+Alternatif tanpa akun MaxMind: buka Wireshark sekali dan aktifkan
+**Edit → Preferences → Name Resolution → Enable MaxMind geolocation**.
+Wireshark akan mengunduh database ke
+`~/.local/share/wireshark/maxmind/`.
+
+Lokasi file yang dicari aplikasi:
+
+- `~/.local/share/wireshark/maxmind/GeoLite2-City.mmdb`
+- `~/.local/share/GeoIP/GeoLite2-City.mmdb`
+- `/usr/share/GeoIP/GeoLite2-City.mmdb`
+- `/usr/share/wireshark/maxmind/GeoLite2-City.mmdb`
+
+Atau tentukan langsung dengan `--db /path/GeoLite2-City.mmdb` pada versi
+standalone.
 
 ## Catatan
 
